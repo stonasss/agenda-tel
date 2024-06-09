@@ -1,38 +1,33 @@
 import axios from "axios";
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
 
-const useLogin = (relativeUrl, body) => {
+const useContacts = (relativeUrl) => {
     //const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState(null);
     const fullUrl = `${process.env.REACT_APP_API_BASE_URL}${relativeUrl}`;
-    const navigate = useNavigate();
 
-    const { userData, setUserData } = useContext(UserContext)
+    const { userData, userContacts, setUserContacts } = useContext(UserContext)
 
-    const submitForm = async (body) => {
+    const submitForm = async () => {
         //setIsLoading(true);
         setError(null);
 
         try {
-            await axios.post(fullUrl, body)
+            await axios.get(fullUrl, {headers: { Authorization: `Bearer ${userData}` } })
                 .then((res) => {
-                    setUserData(res.data.user.token)
-                    console.log(res.data.user.token)
+                    setUserContacts(res.data.contacts)
+                    console.log(res.data.contacts)
                 })
-            alert('Login feito com sucesso!')
         } catch (error) {
             console.log(error)
             setError(error.message || "Unknown error occurred");
         } finally {
             //setIsLoading(false);
-            navigate('/home')
-            console.log(userData)
         }
     };
 
     return { /* isLoading, */ error, submitForm };
 };
 
-export default useLogin;
+export default useContacts;
