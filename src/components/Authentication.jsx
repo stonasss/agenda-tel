@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import useAuthorization from "../hooks/useAuthorization";
+import useLogin from "../hooks/useLogin";
 
 export default function Authentication({ registerModal, setRegisterModal }){
     const handleClick = () =>{
@@ -8,7 +8,7 @@ export default function Authentication({ registerModal, setRegisterModal }){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { /* isLoading: submitting, error: submitError, */ submitForm } = useAuthorization("/")
+    const { /* isLoading: submitting, error: submitError, */ submitForm } = useLogin("/")
 
     async function handleSubmit(event) {
         event.preventDefault()

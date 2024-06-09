@@ -1,11 +1,11 @@
 import { useState } from "react";
-import useAuthorization from "../../hooks/useAuthorization";
+import useRegister from "../../hooks/useRegister";
 
 export default function RegisterModal({ registerModal, onClose }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const { /* isLoading: submitting, error: submitError, */ submitForm } = useAuthorization("/register")
+    const { /* isLoading: submitting, error: submitError, */ submitForm } = useRegister("/register")
     if (!registerModal) return null;
 
     async function handleSubmit(event) {
