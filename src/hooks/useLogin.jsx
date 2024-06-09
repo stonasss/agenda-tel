@@ -9,7 +9,7 @@ const useLogin = (relativeUrl, body) => {
     const fullUrl = `${process.env.REACT_APP_API_BASE_URL}${relativeUrl}`;
     const navigate = useNavigate();
 
-    const { userData, setUserData } = useContext(UserContext)
+    const { setUserData } = useContext(UserContext)
 
     const submitForm = async (body) => {
         //setIsLoading(true);
@@ -28,7 +28,6 @@ const useLogin = (relativeUrl, body) => {
         } finally {
             //setIsLoading(false);
             navigate('/home')
-            console.log(userData)
         }
     };
 
