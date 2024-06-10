@@ -3,10 +3,12 @@ import NavBar from "../components/NavBar.jsx";
 import ContactList from "../components/ContactList.jsx";
 import AddContactModal from "../components/Modal/AddContactModal.jsx";
 import EditContactModal from "../components/Modal/EditContactModal.jsx";
+import DeleteContactModal from "../components/Modal/DeleteContactModal.jsx";
 
 export default function ContactsScreen() {
     const [addContactModal, setAddContactModal] = useState(false);
     const [editContactModal, setEditContactModal] = useState(false);
+    const [deleteContactModal, setDeleteContactModal] = useState(false);
 
     return (
         <>
@@ -22,11 +24,18 @@ export default function ContactsScreen() {
                         onClose={() => setEditContactModal(false)} 
                     />
 
+                    <DeleteContactModal 
+                        deleteContactModal={deleteContactModal}
+                        onClose={() => setDeleteContactModal(false)}
+                    />
+
                     <ContactList 
                         addContactModal={addContactModal}
                         setAddContactModal={setAddContactModal} 
                         editContactModal={editContactModal}
                         setEditContactModal={setEditContactModal}
+                        deleteContactModal={deleteContactModal}
+                        setDeleteContactModal={setDeleteContactModal}
                     />
             </div>
         </>

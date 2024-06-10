@@ -5,7 +5,14 @@ import Edit from "../assets/create-outline.svg";
 import Delete from "../assets/trash-outline.svg";
 import ContactContext from "../context/ContactContext";
 
-export default function ContactList({ addContactModal, setAddContactModal, editContactModal, setEditContactModal }) {
+export default function ContactList({ 
+    addContactModal, 
+    setAddContactModal, 
+    editContactModal, 
+    setEditContactModal,
+    deleteContactModal,
+    setDeleteContactModal
+    }) {
     const { fetchData, userContacts } = useContacts("/user-contacts")
     const {
         setContactName,
@@ -18,6 +25,12 @@ export default function ContactList({ addContactModal, setAddContactModal, editC
         setAddContactModal(!addContactModal)
     }
 
+    const handleDeleteContact = (phone, image) => {
+        setContactPhone(phone)
+        setContactImage(image)
+        setDeleteContactModal(!deleteContactModal)
+    }
+
     const handleEditContact = (contact, image, phone, email) => {
         setContactName(contact)
         setContactImage(image)
@@ -28,7 +41,7 @@ export default function ContactList({ addContactModal, setAddContactModal, editC
 
     useEffect(() => {
         fetchData()
-    }, [addContactModal, editContactModal, fetchData])
+    }, [addContactModal, editContactModal, deleteContactModal, fetchData])
 
     return (
         <>
@@ -56,7 +69,12 @@ export default function ContactList({ addContactModal, setAddContactModal, editC
                                     alt="editar contato" 
                                     className="absolute w-4 right-7 bottom-8 hover:cursor-pointer"
                                 />
-                                <img src={Delete} alt="deletar contato" className="absolute w-4 right-1 bottom-8 hover:cursor-pointer"/>
+                                <img 
+                                    onClick={() => handleDeleteContact(contact.phone, contact.image)}
+                                    src={Delete} 
+                                    alt="deletar contato" 
+                                    className="absolute w-4 right-1 bottom-8 hover:cursor-pointer"
+                                />
                             </span>
                         </div> )) 
                         ) : ( 
