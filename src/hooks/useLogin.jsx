@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import { toast } from 'react-toastify';
 
 const useLogin = (relativeUrl, body) => {
     //const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -16,15 +17,16 @@ const useLogin = (relativeUrl, body) => {
         setError(null);
 
         try {
+            toast("Login sendo realizado...")
             await axios.post(fullUrl, body)
                 .then((res) => {
                     setUserData(res.data.user.token)
-                    console.log(res.data.user.token)
                 })
-            alert('Login feito com sucesso!')
+            toast("Logado com sucesso!")
         } catch (error) {
             console.log(error)
             setError(error.message || "Unknown error occurred");
+            toast("Algum erro ocorreu.")
         } finally {
             //setIsLoading(false);
             navigate('/home')
