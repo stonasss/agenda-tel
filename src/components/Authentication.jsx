@@ -3,7 +3,7 @@ import useLogin from "../hooks/useLogin";
 import UserContext from "../context/UserContext"
 
 export default function Authentication({ registerModal, setRegisterModal }){
-    const { userData, setUserData } = useContext(UserContext);
+    const { setUserData } = useContext(UserContext);
     setUserData('')
 
     const handleClick = () =>{
@@ -12,7 +12,7 @@ export default function Authentication({ registerModal, setRegisterModal }){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { /* isLoading: submitting, error: submitError, */ submitForm } = useLogin("/")
+    const { submitForm } = useLogin("/")
 
     async function handleSubmit(event) {
         event.preventDefault()

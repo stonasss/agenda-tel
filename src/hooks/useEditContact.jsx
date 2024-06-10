@@ -1,33 +1,25 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { toast } from 'react-toastify';
 
 const useEditContact = (relativeUrl, body) => {
-    //const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState(null);
     const fullUrl = `${process.env.REACT_APP_API_BASE_URL}${relativeUrl}`;
 
     const { userData } = useContext(UserContext)
 
     const updateData = async (body) => {
-        //setIsLoading(true);
-        setError(null);
-
         try {
             toast("Atualização em andamento...")
             await axios.put(fullUrl, body, {headers: { Authorization: `Bearer ${userData}` } })
             toast("Contato atualizado!")
         } catch (error) {
             console.log(error)
-            setError(error.message || "Unknown error occurred");
             toast("Algum erro ocorreu.")
-        } finally {
-            //setIsLoading(false);
         }
     };
 
-    return { /* isLoading, */ error, updateData };
+    return { updateData };
 };
 
 export default useEditContact;

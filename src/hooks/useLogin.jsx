@@ -14,7 +14,6 @@ const useLogin = (relativeUrl, body) => {
         try {
             toast("Entrando...")
             const response = await axios.post(fullUrl, body)
-            console.log(response)
             setUserData(response.data.user.token)
             toast("Usuário logado!")
             navigate('/home')
