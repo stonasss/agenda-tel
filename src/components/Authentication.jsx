@@ -1,7 +1,11 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import useLogin from "../hooks/useLogin";
+import UserContext from "../context/UserContext"
 
 export default function Authentication({ registerModal, setRegisterModal }){
+    const { userData, setUserData } = useContext(UserContext);
+    setUserData('')
+
     const handleClick = () =>{
         setRegisterModal(!registerModal)
     }

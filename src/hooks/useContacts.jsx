@@ -18,7 +18,8 @@ const useContacts = (relativeUrl) => {
         try {
             await axios.get(fullUrl, {headers: { Authorization: `Bearer ${userData}` } })
                 .then((res) => {
-                    const contacts = res.data.contacts.contacts
+                    const contacts = res.data.contacts
+                    console.log('data from api:', res.data.contacts)
                     setUserContacts(contacts)
                 })
         } catch (error) {
