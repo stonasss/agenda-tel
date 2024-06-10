@@ -8,7 +8,7 @@ const useLogin = (relativeUrl, body) => {
     const fullUrl = `${process.env.REACT_APP_API_BASE_URL}${relativeUrl}`;
     const navigate = useNavigate();
 
-    const { userData, setUserData } = useContext(UserContext);
+    const { setUserData } = useContext(UserContext);
 
     const submitForm = async (body) => {
         try {
@@ -21,8 +21,6 @@ const useLogin = (relativeUrl, body) => {
             console.log(error)
             toast("Algum erro ocorreu.")
             setUserData('')
-        } finally {
-            console.log(userData)
         }
     };
 

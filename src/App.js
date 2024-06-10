@@ -2,13 +2,13 @@ import {
   BrowserRouter as Router,
   Routes,
   Route
-} from "react-router-dom";
+} from 'react-router-dom';
 import React from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import AuthScreen from "./pages/AuthScreen.jsx";
-import ContactsScreen from "./pages/ContactsScreen.jsx"
-import { UserProvider } from "./context/UserContext.jsx"
+import AuthScreen from './pages/AuthScreen.jsx';
+import ContactsScreen from './pages/ContactsScreen.jsx';
+import { UserProvider } from './context/UserContext.jsx';
 import { ContactProvider } from "./context/ContactContext.jsx";
 
 function App() {

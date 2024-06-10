@@ -1,9 +1,32 @@
-export default function NavBar() {
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+export default function NavBar({ EnableAuth }) {
+    const navigate = useNavigate()
+
+    async function handleLogout() {
+        navigate('/')
+        toast('Usuário deslogado!')
+    }
+
     return (
-        <div className="header z-10 top-0 fixed bg-gradient-to-r from-cyan-950 via-cyan-600 to-cyan-950 w-screen h-14 flex">
-            <div className="flex mx-auto space-x-96 items-center">
-                <h1 className="title font-sans font-bold text-white text-xl hover:cursor-default">Lista de Contatos</h1>
+        <>
+        {!EnableAuth ? (
+            <div className="header z-10 top-0 fixed bg-gradient-to-r from-cyan-950 via-cyan-600 to-cyan-950 w-screen h-14 flex">
+                <div className="flex mx-auto space-x-96 items-center">
+                    <h1 className="title font-sans font-bold text-white text-xl hover:cursor-default">Lista de Contatos</h1>
+                </div>
+            </div> ) :(
+            <div className="header z-10 top-0 fixed bg-gradient-to-r from-cyan-950 via-cyan-600 to-cyan-950 w-screen h-14 flex">
+                <div className="flex mx-auto space-x-96 items-center">
+                    <h1 className="title relative font-sans font-bold text-white text-xl hover:cursor-default">Lista de Contatos</h1>
+                        <button onClick={handleLogout} className="absolute left-64 rounded-full font-bold text-cyan-950 bg-cyan-200 w-[110px] h-[30px] text-sm hover:bg-gray-400">
+                            Deslogar
+                        </button>
+                </div>
             </div>
-        </div>
+            )}
+        </>
     )
+    
 }

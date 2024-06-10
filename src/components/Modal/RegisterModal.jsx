@@ -68,7 +68,7 @@ export default function RegisterModal({ registerModal, onClose }) {
                         <div>
                             <button
                                 type="submit"
-                                className="rounded-full mt-4 font-bold text-cyan-950 bg-cyan-200 w-[110px] h-[30px] text-sm"
+                                className="rounded-full mt-4 font-bold text-cyan-950 bg-cyan-200 w-[110px] h-[30px] text-sm hover:bg-gray-400"
                             >Cadastrar</button>
                         </div>
 
