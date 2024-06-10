@@ -1,23 +1,26 @@
-import { useState } from "react";
-import useAddContact from "../../hooks/useAddContact";
+import { useContext } from "react";
+import useEditContact from "../../hooks/useEditContact";
+import ContactContext from "../../context/ContactContext";
 
-export default function AddContactModal({ addContactModal, onClose }) {
-    const [name, setName] = useState('');
-    const [image, setImage] = useState('');
-    const [phone, setPhone] = useState();
-    const [email, setEmail] = useState('')
-    const { /* isLoading: submitting, error: submitError, */ submitForm } = useAddContact("/contacts")
+export default function EditContactModal({ editContactModal, onClose }) {
+    const { /* isLoading: submitting, error: submitError, */ updateData } = useEditContact("/contacts")
+    const {
+        contactName,
+        setContactName,
+        contactImage,
+        setContactImage,
+        contactPhone,
+        setContactPhone,
+        contactEmail,
+        setContactEmail
+    } = useContext(ContactContext)
 
-    if (!addContactModal) return null;
+    if (!editContactModal) return null;
 
     async function handleSubmit(event) {
         event.preventDefault()
-        const body = {name, image, phone, email}
-        submitForm(body)
-        setName('');
-        setImage('');
-        setPhone('');
-        setEmail('');
+        const body = {name: contactName, image: contactImage, phone: contactPhone, email: contactEmail}
+        updateData(body);
         onClose();
     }
 
@@ -39,8 +42,8 @@ export default function AddContactModal({ addContactModal, onClose }) {
                                 id="name"
                                 className="rounded-lg p-2 placeholder:text-xs"
                                 placeholder="Nome"
-                                value={name}
-                                onChange={e => setName(e.target.value)}
+                                value={contactName}
+                                onChange={e => setContactName(e.target.value)}
                                 required />
                         </div>
 
@@ -51,8 +54,8 @@ export default function AddContactModal({ addContactModal, onClose }) {
                                 id="email"
                                 className="rounded-lg p-2 placeholder:text-xs"
                                 placeholder="Email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
+                                value={contactEmail}
+                                onChange={e => setContactEmail(e.target.value)}
                                 required />
                         </div>
 
@@ -63,8 +66,8 @@ export default function AddContactModal({ addContactModal, onClose }) {
                                 id="tel"
                                 className="rounded-lg p-2 placeholder:text-xs"
                                 placeholder="Telefone"
-                                value={phone}
-                                onChange={e => setPhone(e.target.value)}
+                                value={contactPhone}
+                                onChange={e => setContactPhone(e.target.value)}
                                 required />
                         </div>
 
@@ -75,8 +78,8 @@ export default function AddContactModal({ addContactModal, onClose }) {
                                 id="url"
                                 className="rounded-lg p-2 placeholder:text-xs"
                                 placeholder="URL de Imagem"
-                                value={image}
-                                onChange={e => setImage(e.target.value)}
+                                value={contactImage}
+                                onChange={e => setContactImage(e.target.value)}
                                 required />
                         </div>
 
