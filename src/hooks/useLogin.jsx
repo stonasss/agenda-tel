@@ -23,7 +23,7 @@ const useLogin = (relativeUrl, body) => {
         } catch (error) {
             console.log(error)
             toast.dismiss(loginToast)
-            toast("Algum erro ocorreu.")
+            toast("Algum erro ocorreu. Errou alguma informação?")
             setUserData('')
         }
     };

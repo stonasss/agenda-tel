@@ -50,7 +50,12 @@ export default function ContactList({
                 <h1 className="italic absolute left-12 bottom-24 sm:absolute sm:left-8 sm:bottom-2 w-[132px] text-m">Novo Contato</h1>
                 <img src={Add} alt="adicionar contato" className="absolute left-5 bottom-24 w-6 sm:left-3 sm:bottom-3 sm:w-4" />
             </div>
-                <div className="flex flex-col sm:text-gray-800 font-semibold overflow-y-scroll h-[595px] p-4 text-xs">
+                <div className="sm:relative flex flex-col sm:text-gray-800 font-semibold overflow-y-scroll h-[595px] p-4 text-xs">
+                    <span className="flex flex-row">
+                        <h1 className="absolute top-1 left-6 font-bold text-gray-400 text-sm">Contato</h1>
+                        <h2 className="absolute top-1 left-52 font-bold text-gray-400 text-sm">Telefone</h2>
+                        <h3 className="absolute top-1 right-48 font-bold text-gray-400 text-sm">Email</h3>
+                    </span>
                 {userContacts.length ? (
                     userContacts.map((contact) => (
                         <div key={contact.id} className="relative border-b border-solid pt-4 pb-4">
@@ -78,7 +83,7 @@ export default function ContactList({
                             </span>
                         </div> )) 
                         ) : ( 
-                        <div className="text-base">Nenhum contato registrado...</div> 
+                        <div className="text-base"></div> 
                     )}
                 </div>
         </div>
