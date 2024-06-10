@@ -45,35 +45,35 @@ export default function ContactList({
 
     return (
         <>
-        <div className="container border-2 m-auto mt-28 max-w-xl h-[600px] bg-white border-cyan-600">
-            <div onClick={handleAddContact} className="relative hover:cursor-pointer">
-                <h1 className="absolute left-8 bottom-2 w-[132px] text-m">Adicionar Contato</h1>
-                <img src={Add} alt="adicionar contato" className="absolute left-3 bottom-3 w-4" />
+        <div className="container m-auto mt-16 max-w-full sm:bg-gray-100 border-cyan-600 sm:mt-28 sm:max-w-xl sm:max-h-full">
+            <div onClick={handleAddContact} className="sm:relative hover:cursor-pointer">
+                <h1 className="italic absolute left-12 bottom-24 sm:absolute sm:left-8 sm:bottom-2 w-[132px] text-m">Novo Contato</h1>
+                <img src={Add} alt="adicionar contato" className="absolute left-5 bottom-24 w-6 sm:left-3 sm:bottom-3 sm:w-4" />
             </div>
-                <div className="flex flex-col overflow-auto h-[595px] p-4 text-xs">
+                <div className="flex flex-col sm:text-gray-800 font-semibold overflow-y-scroll h-[595px] p-4 text-xs">
                 {userContacts.length ? (
                     userContacts.map((contact) => (
                         <div key={contact.id} className="relative border-b border-solid pt-4 pb-4">
                             <div className="flex flex-row">
                                 <img src={contact.image} alt="avatar" className="rounded-full w-12"/>
-                                <h1 className="absolute left-14 top-8 w-32">{contact.name}</h1>
+                                <h1 className="absolute left-16 top-8 w-32">{contact.name}</h1>
                             </div>
-                            <span className="flex flex-row">
-                                <h1 className="absolute left-48 bottom-8">{contact.phone}</h1>
-                                <h2 className="absolute left-80 bottom-8">{contact.email}</h2>
+                            <span className="flex absolute top-6 left-40 flex-col sm:static sm:flex-row">
+                                <h1 className="static sm:absolute sm:left-48 sm:bottom-8">{contact.phone}</h1>
+                                <h2 className="static sm:absolute sm:left-[320px] sm:bottom-8">{contact.email}</h2>
                             </span>
-                            <span className="flex flex-row">
+                            <span className="flex absolute p-2 flex-col right-0 top-3 sm:flex-row sm:right-2 sm:top-6">
                                 <img 
                                     onClick={() => handleEditContact(contact.name, contact.image, contact.phone, contact.email)}
                                     src={Edit} 
                                     alt="editar contato" 
-                                    className="absolute w-4 right-7 bottom-8 hover:cursor-pointer"
+                                    className="w-4 right-7 bottom-8 mb-1.5 sm:mr-2 sm:mb-0 hover:cursor-pointer"
                                 />
                                 <img 
                                     onClick={() => handleDeleteContact(contact.phone, contact.image)}
                                     src={Delete} 
                                     alt="deletar contato" 
-                                    className="absolute w-4 right-1 bottom-8 hover:cursor-pointer"
+                                    className="w-4 right-1 bottom-8 hover:cursor-pointer"
                                 />
                             </span>
                         </div> )) 

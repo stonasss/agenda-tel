@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import UserContext from "../context/UserContext";
+import { toast } from 'react-toastify';
 
 const useContacts = (relativeUrl) => {
     //const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,6 +24,7 @@ const useContacts = (relativeUrl) => {
         } catch (error) {
             console.log(error)
             setError(error.message || "Unknown error occurred");
+            toast("Algum erro ocorreu.")
         } finally {
             //setIsLoading(false);
         }

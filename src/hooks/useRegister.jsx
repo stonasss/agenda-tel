@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 const useRegister = (relativeUrl, body) => {
     //const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -11,12 +12,13 @@ const useRegister = (relativeUrl, body) => {
         setError(null);
 
         try {
-            const response = await axios.post(fullUrl, body)
-            console.log(response)
-            alert('Cadastro feito com sucesso!')
+            toast("Cadastro sendo realizado...")
+            await axios.post(fullUrl, body)
+            toast("Cadastro realizado!")
         } catch (error) {
             console.log(error)
             setError(error.message || "Unknown error occurred");
+            toast("Algum erro ocorreu.")
         } finally {
             //setIsLoading(false);
         }
