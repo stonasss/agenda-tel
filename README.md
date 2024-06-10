@@ -4,8 +4,8 @@ Uma lista de contatos simples, com autenticação de usuário. O usuário cadast
 
 ## Back-end ⚙️
 
-`<a  href="https://github.com/stonasss/agenda-tel-api">`github.com/stonasss/agenda-tel-api `</a>`
-`</br>`
+<a  href="https://github.com/stonasss/agenda-tel-api">github.com/stonasss/agenda-tel-api</a>
+</br>
 
 ## Stack :toolbox:
 
