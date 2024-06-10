@@ -9,13 +9,17 @@ const useDeleteContact = (relativeUrl, body) => {
     const { userData } = useContext(UserContext)
 
     const deleteData = async (body) => {
+        let deleteToast = null;
+
         try {
-            toast("Deletando usuário...")
+            deleteToast = toast.info("Deletando contato...", { autoClose: false })
             await axios.delete(fullUrl, {headers: { Authorization: `Bearer ${userData}` }, data: body } )
-            toast("Usuário deletado!")
+            toast("Contato deletado!")
+            toast.dismiss(deleteToast)
         } catch (error) {
             console.log(error)
             toast("Algum erro ocorreu.")
+            toast.dismiss(deleteToast)
         }
     };
 

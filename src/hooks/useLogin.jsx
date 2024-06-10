@@ -11,14 +11,18 @@ const useLogin = (relativeUrl, body) => {
     const { setUserData } = useContext(UserContext);
 
     const submitForm = async (body) => {
+        let loginToast = null;
+
         try {
-            toast("Entrando...")
+            loginToast = toast.info("Entrando...", { autoClose: false })
             const response = await axios.post(fullUrl, body)
             setUserData(response.data.user.token)
             toast("Usuário logado!")
+            toast.dismiss(loginToast)
             navigate('/home')
         } catch (error) {
             console.log(error)
+            toast.dismiss(loginToast)
             toast("Algum erro ocorreu.")
             setUserData('')
         }

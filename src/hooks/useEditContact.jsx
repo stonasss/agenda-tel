@@ -9,12 +9,16 @@ const useEditContact = (relativeUrl, body) => {
     const { userData } = useContext(UserContext)
 
     const updateData = async (body) => {
+        let updateToast = null;
+
         try {
-            toast("Atualização em andamento...")
+            updateToast = toast.info("Atualizando contato...", { autoClose: false })
             await axios.put(fullUrl, body, {headers: { Authorization: `Bearer ${userData}` } })
             toast("Contato atualizado!")
+            toast.dismiss(updateToast)
         } catch (error) {
             console.log(error)
+            toast.dismiss(updateToast)
             toast("Algum erro ocorreu.")
         }
     };

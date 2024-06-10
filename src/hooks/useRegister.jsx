@@ -6,12 +6,18 @@ const useRegister = (relativeUrl, body) => {
 
     const submitForm = async (body) => {
         try {
-            toast("Cadastro sendo realizado...")
-            await axios.post(fullUrl, body)
-            toast("Cadastro realizado!")
+            const promise = axios.post(fullUrl, body)
+            toast.promise(
+                promise,
+                {
+                    pending: "Cadastro sendo realizado...",
+                    success: "Cadastro realizado!",
+                    error: "Algum erro ocorreu. Errou alguma informação?"
+                }
+            )
+            await promise;
         } catch (error) {
             console.log(error)
-            toast("Algum erro ocorreu.")
         }
     };
 

@@ -9,12 +9,16 @@ const useAddContact = (relativeUrl, body) => {
     const { userData } = useContext(UserContext)
 
     const submitForm = async (body) => {
+        let newContactToast = null;
+
         try {
-            toast("Adicionando contato...")
+            newContactToast = toast.info("Adicionando contato...", { autoClose: false })
             await axios.post(fullUrl, body, {headers: { Authorization: `Bearer ${userData}` } })
             toast("Contato adicionado!")
+            toast.dismiss(newContactToast)
         } catch (error) {
             console.log(error)
+            toast.dismiss(newContactToast)
             toast("Algum erro ocorreu.")
         }
     };
